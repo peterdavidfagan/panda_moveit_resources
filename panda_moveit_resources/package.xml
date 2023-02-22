@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>lite6_moveit_resources</name>
+  <name>panda_moveit_resources</name>
   <author email="peterdavidfagan@gmail.com">Peter David Fagan</author>
   <maintainer email="peterdavidfagan@gmail.com">Peter David Fagan</maintainer>
   <version>0.0.0</version>
