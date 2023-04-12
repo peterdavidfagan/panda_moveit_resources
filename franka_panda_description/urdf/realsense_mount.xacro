@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="realsense_mount" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:macro name="realsense_mount" params="parent">
+		
+		<joint name="arm_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="arm_link"/>
+			<origin xyz="0 0 0.0025" rpy="0 0 0"/>
+			<axis xyz="0.0 0.0 1.0"/>
+		</joint>
+		
+		<link name="mount_link">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<mesh filename="$(find moveit_resources_franka_panda_description)/meshes/collision/realsense_mount.stl" scale="1.0 1.0 1.0"/>
+				</geometry>
+			</visual>
+			<!--<collision>
+				<origin xyz="0 0 0" rpy="0 ${radians(180)} ${radians(180)}"/>
+				<geometry>
+				  <box size="0.1 0.1 0.005"/>
+				</geometry>
+			</collision>-->
+		</link>
+		
+		<joint name="gripper_joint" type="fixed">
+			<parent link="mount_link"/>
+			<child link="gripper_link"/>
+			<origin xyz="0 0 -0.0025" rpy="0 0 0"/>
+			<axis xyz="0.0 0.0 1.0"/>
+		</joint>
+		
+		<link name="gripper_link">
+			<origin xyz="0 0 0.0" rpy="0 0 0"/>
+		</link>
+		
+		<joint name="camera_joint" type="fixed">
+			<parent link="mount_link"/>
+			<child link="camera_link"/>
+			<origin xyz="0.06 0 0" rpy="0 0 0"/>
+			<axis xyz="0.0 0.0 1.0"/>
+		</joint>
+		
+		<link name="camera_link">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+		</link>
+
+
+	</xacro:macro>
+</robot>
