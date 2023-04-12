@@ -1,12 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot name="realsense_mount" xmlns:xacro="http://ros.org/wiki/xacro">
-	<xacro:macro name="realsense_mount" params="parent">
+	<xacro:macro name="realsense_mount" params="parent *origin">
 		
 		<joint name="arm_joint" type="fixed">
 			<parent link="${parent}"/>
 			<child link="arm_link"/>
 			<origin xyz="0 0 0.0025" rpy="0 0 0"/>
-			<axis xyz="0.0 0.0 1.0"/>
 		</joint>
 		
 		<link name="mount_link">
@@ -28,7 +27,6 @@
 			<parent link="mount_link"/>
 			<child link="gripper_link"/>
 			<origin xyz="0 0 -0.0025" rpy="0 0 0"/>
-			<axis xyz="0.0 0.0 1.0"/>
 		</joint>
 		
 		<link name="gripper_link">
@@ -39,7 +37,6 @@
 			<parent link="mount_link"/>
 			<child link="camera_link"/>
 			<origin xyz="0.06 0 0" rpy="0 0 0"/>
-			<axis xyz="0.0 0.0 1.0"/>
 		</joint>
 		
 		<link name="camera_link">
