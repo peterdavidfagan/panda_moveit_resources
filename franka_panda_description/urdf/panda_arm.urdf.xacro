@@ -19,11 +19,11 @@
     <xacro:include filename="$(find moveit_resources_franka_panda_description)/urdf/realsense_mount.xacro"/>
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>	    
     <xacro:include filename="$(find moveit_resources_franka_panda_description)/urdf/hand.xacro"/>
-    <xacro:realsense_mount parent="panda_link8">
+    <xacro:realsense_mount parent="$(arg arm_id)_link8">
       <origin xyz="0 0 -0.0025" rpy="${radians(180)} 0 ${radians(180)}"/>
     </xacro:realsense_mount>
 
-    <xacro:sensor_d435 parent="camera_link">
+    <xacro:sensor_d435 parent="camera_link" name="realsense">
       <origin xyz="0 0 0" rpy="0 ${radians(-90)} ${radians(180)}"/>
     </xacro:sensor_d435>
 

@@ -12,7 +12,7 @@
     <link name="${ns}_hand">
       <visual>
         <geometry>
-          <mesh filename="package://moveit_resources_franka_description/meshes/visual/hand.dae"/>
+          <mesh filename="package://moveit_resources_franka_panda_description/meshes/visual/hand.dae"/>
         </geometry>
       </visual>
       <collision>

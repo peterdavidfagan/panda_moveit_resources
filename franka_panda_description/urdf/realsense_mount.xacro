@@ -2,9 +2,9 @@
 <robot name="realsense_mount" xmlns:xacro="http://ros.org/wiki/xacro">
 	<xacro:macro name="realsense_mount" params="parent *origin">
 		
-		<joint name="arm_joint" type="fixed">
+		<joint name="mount_joint" type="fixed">
 			<parent link="${parent}"/>
-			<child link="arm_link"/>
+			<child link="mount_link"/>
 			<origin xyz="0 0 0.0025" rpy="0 0 0"/>
 		</joint>
 		
@@ -12,7 +12,7 @@
 			<visual>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<geometry>
-					<mesh filename="$(find moveit_resources_franka_panda_description)/meshes/collision/realsense_mount.stl" scale="1.0 1.0 1.0"/>
+					<mesh filename="package://moveit_resources_franka_panda_description/meshes/collision/realsense_mount.stl" scale="1.0 1.0 1.0"/>
 				</geometry>
 			</visual>
 			<!--<collision>
