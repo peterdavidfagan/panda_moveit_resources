@@ -303,6 +303,165 @@
     <parent link="panda_link7"/>
     <child link="panda_link8"/>
   </joint>
+  <material name="aluminum">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+  <material name="plastic">
+    <color rgba="0.1 0.1 0.1 1"/>
+  </material>
+  <joint name="arm_joint" type="fixed">
+    <parent link="panda_link8"/>
+    <child link="arm_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0025"/>
+  </joint>
+  <link name="mount_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="/home/peter/Code/ros/panda_stacking_demo/install/moveit_resources_franka_panda_description/share/moveit_resources_franka_panda_description/meshes/collision/realsense_mount.stl" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+    <!--<collision>
+				<origin xyz="0 0 0" rpy="0 ${radians(180)} ${radians(180)}"/>
+				<geometry>
+				  <box size="0.1 0.1 0.005"/>
+				</geometry>
+			</collision>-->
+  </link>
+  <joint name="gripper_joint" type="fixed">
+    <parent link="mount_link"/>
+    <child link="gripper_link"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.0025"/>
+  </joint>
+  <link name="gripper_link">
+    <origin rpy="0 0 0" xyz="0 0 0.0"/>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="mount_link"/>
+    <child link="camera_link"/>
+    <origin rpy="0 0 0" xyz="0.06 0 0"/>
+  </joint>
+  <link name="camera_link">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </link>
+  <!-- camera body, with origin at bottom screw mount -->
+  <joint name="realsense_joint" type="fixed">
+    <origin rpy="0 -1.5707963267948966 3.141592653589793" xyz="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="realsense_bottom_screw_frame"/>
+  </joint>
+  <link name="realsense_bottom_screw_frame"/>
+  <joint name="realsense_link_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.010600000000000002 0.0175 0.0125"/>
+    <parent link="realsense_bottom_screw_frame"/>
+    <child link="realsense_link"/>
+  </joint>
+  <link name="realsense_link">
+    <visual>
+      <!-- the mesh origin is at front plate in between the two infrared camera axes -->
+      <origin rpy="1.5707963267948966 0 1.5707963267948966" xyz="0.0043 -0.0175 0"/>
+      <geometry>
+        <mesh filename="package://realsense2_description/meshes/d435.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.0175 0"/>
+      <geometry>
+        <box size="0.02505 0.09 0.025"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <!-- The following are not reliable values, and should not be used for modeling -->
+      <mass value="0.072"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="0.003881243" ixy="0.0" ixz="0.0" iyy="0.000498940" iyz="0.0" izz="0.003879257"/>
+    </inertial>
+  </link>
+  <joint name="panda_hand_joint" type="fixed">
+    <parent link="gripper_link"/>
+    <child link="panda_hand"/>
+    <origin rpy="0 0 -0.7853981633974483" xyz="0 0 0"/>
+  </joint>
+  <link name="panda_hand">
+    <visual>
+      <geometry>
+        <mesh filename="package://moveit_resources_franka_description/meshes/visual/hand.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963267948966 1.5707963267948966" xyz="0 0 0.04"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.07"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.05 0.04"/>
+      <geometry>
+        <sphere radius="0.07"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.05 0.04"/>
+      <geometry>
+        <sphere radius="0.07"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 1.5707963267948966 1.5707963267948966" xyz="0 0 0.1"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 -0.05 0.1"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0.05 0.1"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- Define the hand_tcp frame -->
+  <link name="panda_hand_tcp"/>
+  <joint name="panda_hand_tcp_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.1034"/>
+    <parent link="panda_hand"/>
+    <child link="panda_hand_tcp"/>
+  </joint>
+  <link name="panda_leftfinger">
+    <visual>
+      <geometry>
+        <mesh filename="package://moveit_resources_franka_panda_description/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <link name="panda_rightfinger">
+    <visual>
+      <origin rpy="0 0 3.141592653589793" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://moveit_resources_franka_panda_description/meshes/visual/finger.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="panda_finger_joint1" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_leftfinger"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0584"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+  </joint>
+  <joint name="panda_finger_joint2" type="prismatic">
+    <parent link="panda_hand"/>
+    <child link="panda_rightfinger"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0584"/>
+    <axis xyz="0 -1 0"/>
+    <limit effort="20" lower="0.0" upper="0.04" velocity="0.2"/>
+    <mimic joint="panda_finger_joint1"/>
+  </joint>
   <ros2_control name="FrankaHardwareInterface" type="system">
     <hardware>
       <plugin>franka_hardware/FrankaHardwareInterface</plugin>
