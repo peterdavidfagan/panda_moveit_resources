@@ -24,7 +24,7 @@
     </xacro:realsense_mount>
 
     <xacro:sensor_d435 parent="camera_link" name="realsense">
-      <origin xyz="-0.015 0 0.005" rpy="0 ${radians(-90)} ${radians(180)}"/>
+      <origin xyz="-0.0125 0 0.01" rpy="0 ${radians(-90)} ${radians(180)}"/>
     </xacro:sensor_d435>
 
     <xacro:hand ns="$(arg arm_id)" rpy="0 0 0" connected_to="gripper_link" safety_distance="0.03"/>
