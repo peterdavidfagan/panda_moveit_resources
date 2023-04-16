@@ -17,7 +17,7 @@
   
   <xacro:if value="$(arg hand_realsense)"> 
     <xacro:include filename="$(find moveit_resources_franka_panda_description)/urdf/realsense_mount.xacro"/>
-    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro"/>	    
+    <xacro:include filename="$(find moveit_resources_franka_panda_description)/urdf/_d435.urdf.xacro"/>	    
     <xacro:include filename="$(find moveit_resources_franka_panda_description)/urdf/hand.xacro"/>
     <xacro:realsense_mount parent="$(arg arm_id)_link8">
       <origin xyz="0 0 0" rpy="${radians(180)} 0 ${radians(180)}"/>
