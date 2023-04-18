@@ -28,7 +28,7 @@ def generate_launch_description():
     franka_xacro_file = os.path.join(get_package_share_directory('moveit_resources_franka_panda_description'), 'urdf',
                                      'panda_arm.urdf.xacro')
     robot_description = Command(
-        [FindExecutable(name='xacro'), ' ', franka_xacro_file, ' hand_realsense:=', load_gripper])
+        [FindExecutable(name='xacro'), ' ', franka_xacro_file, ' robotiq_gripper:=', load_gripper])
 
     rviz_file = os.path.join(get_package_share_directory('moveit_resources_franka_panda_description'), 'rviz',
                              'visualize_franka.rviz')
