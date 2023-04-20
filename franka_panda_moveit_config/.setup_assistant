@@ -2,10 +2,10 @@ moveit_setup_assistant_config:
   URDF:
     package: moveit_resources_franka_panda_description
     relative_path: urdf/panda_arm.urdf.xacro
-    xacro_args: "robot_ip:=192.168.106.39 hand:=true"
+    xacro_args: "robot_ip:=192.168.106.39 robotiq_gripper:=true"
   SRDF:
     relative_path: config/franka_panda.srdf
   CONFIG:
     author_name: Peter David Fagan
     author_email: peterdavidfagan@gmail.com
-    generated_timestamp: 1675698835
+    generated_timestamp: 1681997546

@@ -8,7 +8,6 @@ moveit_controller_manager: moveit_simple_controller_manager/MoveItSimpleControll
 moveit_simple_controller_manager:
   controller_names:
     - panda_arm_controller
-    - panda_hand_controller
 
   panda_arm_controller:
     action_ns: follow_joint_trajectory
@@ -23,9 +22,3 @@ moveit_simple_controller_manager:
       - panda_joint6
       - panda_joint7
 
-  panda_hand_controller:
-    action_ns: gripper_cmd
-    type: GripperCommand
-    default: true
-    joints:
-      - panda_finger_joint1
