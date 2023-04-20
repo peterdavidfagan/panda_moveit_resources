@@ -31,7 +31,7 @@ def generate_launch_description():
         [FindExecutable(name='xacro'), ' ', franka_xacro_file, ' hand_realsense:=', load_gripper])
 
     rviz_file = os.path.join(get_package_share_directory('moveit_resources_franka_panda_description'), 'rviz',
-                             'visualize_franka.rviz')
+                             'visualize.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(

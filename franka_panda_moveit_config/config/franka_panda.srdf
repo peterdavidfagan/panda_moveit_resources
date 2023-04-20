@@ -6,7 +6,7 @@
 <robot name="panda">
 	
   <group name="panda_arm">
-    <chain base_link="panda_link0" tip_link="panda_link8"/>
+    <chain base_link="panda_link0" tip_link="robotiq_gripper_tip_link"/>
   </group>
   <group_state group="panda_arm" name="ready">
     <joint name="panda_joint1" value="0"/>
@@ -42,7 +42,7 @@
   <virtual_joint child_link="panda_link0" name="virtual_joint" parent_frame="world" type="fixed"/>
   
   <end_effector name="robotiq_gripper_tip_link" parent_link="robotiq_gripper_tip_link" group="robotiq_gripper" parent_group="panda_arm"/>
-
+<!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
   <disable_collisions link1="panda_link0" link2="panda_link1" reason="Adjacent"/>
   <disable_collisions link1="panda_link0" link2="panda_link2" reason="Never"/>
   <disable_collisions link1="panda_link0" link2="panda_link3" reason="Never"/>
