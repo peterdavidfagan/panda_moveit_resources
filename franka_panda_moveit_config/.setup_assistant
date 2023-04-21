@@ -4,7 +4,7 @@ moveit_setup_assistant_config:
     relative_path: urdf/panda_arm.urdf.xacro
     xacro_args: "robot_ip:=192.168.106.39"
   SRDF:
-    relative_path: config/franka_panda.srdf
+    relative_path: config/panda.srdf.xacro
   CONFIG:
     author_name: Peter David Fagan
     author_email: peterdavidfagan@gmail.com
